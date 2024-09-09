@@ -5,9 +5,9 @@ public class MainDoubly
         DoublyLinkedList<Integer> dl=new DoublyLinkedList<Integer>();
         System.out.println("Size is : "+dl.size());
         System.out.println(dl.deleteFirst());
-        System.out.println(dl.delete(0));
+        System.out.println(dl.deleteAt(0));
         System.out.println(dl.deleteLast());
-        dl.add(85,0);
+        dl.addAt(85,0);
         System.out.println("Size is : "+dl.size());
         dl.add(32);
         System.out.println("Size is : "+dl.size());
@@ -16,7 +16,7 @@ public class MainDoubly
         dl.add(78); //Works as 'addLast' as well
         dl.addFirst(99);
         dl.addFirst(100);
-        dl.add(237,5);
+        dl.addAt(237,5);
         System.out.println(dl);
         dl.reverse();
         System.out.println(dl);

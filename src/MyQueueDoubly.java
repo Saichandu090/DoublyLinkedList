@@ -1,100 +1,45 @@
-public class MyQueueDoubly<Object>
+public class MyQueueDoubly<T>
 {
-    class Node
-    {
-        Object data;
-        Node prev;
-        Node next;
-        Node(Object data)
-        {
-            this.data=data;
-            this.prev=null;
-            this.next=null;
-        }
-    }
-    Node head;
-    Node tail;
+    DoublyLinkedList<T> dl=new DoublyLinkedList<T>();
 
-    public void enQueue(Object data)
+    public void enQueue(T data)
     {
-        Node n=new Node(data);
-        if(head==null)
-        {
-            head = tail = n;
-            return;
-        }
-        n.prev=tail;
-        tail.next=n;
-        tail=n;
+       dl.add(data);
     }
 
-    public Object deQueue()
+    public T deQueue()
     {
-        if(head==null)
-            return (Object) "Queue is Empty!!";
-        Object data=head.data;
-        head=head.next;
-        head.prev=null;
-        return data;
+       return dl.deleteFirst();
     }
 
-    public Object peek()
+    public T peek()
     {
-        if(head==null)
-            return (Object) "Queue is Empty!!";
-        return head.data;
+       return dl.firstElement();
     }
 
     public int size()
     {
-        return size(head);
-    }
-
-    public int size(Node start)
-    {
-        if(start==null)
-            return 0;
-        return 1+size(start.next);
+        return dl.size();
     }
 
     public boolean isEmpty()
     {
-        if(head==null)
-            return true;
-        return false;
+        return dl.isEmpty();
     }
 
     public void clear()
     {
-        head=tail=null;
+        dl.clear();
     }
 
-    public boolean contains(Object data)
+    public boolean contains(T data)
     {
-        return contains(data,head);
-    }
-
-    public boolean contains(Object data,Node start)
-    {
-        if(start==null)
-            return false;
-        if(start.data.equals(data))
-            return true;
-        return contains(data,start.next);
+        return dl.contains(data);
     }
 
     @Override
     public String toString()
     {
-        String st="[";
-        Node temp=head;
-        while(temp!=null)
-        {
-            st=st+temp.data;
-            if(temp.next!=null)
-                st=st+"->";
-            temp=temp.next;
-        }
-        return st+"]";
+       return dl.toString();
     }
 }

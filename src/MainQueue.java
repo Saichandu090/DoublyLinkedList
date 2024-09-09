@@ -21,5 +21,6 @@ public class MainQueue
         System.out.println("Size is : "+mq.size());
         System.out.println(mq.peek());
         System.out.println(mq.isEmpty());
+        System.out.println(mq);
     }
 }

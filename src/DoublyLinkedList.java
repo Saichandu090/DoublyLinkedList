@@ -1,11 +1,11 @@
-public class DoublyLinkedList<Object>
+public class DoublyLinkedList<T>
 {
     class Node
     {
-        Object data;
+        T data;
         Node prev;
         Node next;
-        Node(Object data)
+        Node(T data)
         {
             this.data=data;
             this.prev=null;
@@ -15,7 +15,7 @@ public class DoublyLinkedList<Object>
     Node head;
     Node tail;
 
-    public void add(Object data)
+    public void add(T data)
     {
         Node n=new Node(data);
         if(head==null)
@@ -28,7 +28,7 @@ public class DoublyLinkedList<Object>
         tail=n;
     }
 
-    public void addFirst(Object data)
+    public void addFirst(T data)
     {
         Node n=new Node(data);
         if(head==null)
@@ -41,7 +41,7 @@ public class DoublyLinkedList<Object>
         head=n;
     }
 
-    public void add(Object data,int index)
+    public void addAt(T data,int index)
     {
         Node n=new Node(data);
         if(index==0)
@@ -68,17 +68,31 @@ public class DoublyLinkedList<Object>
             System.out.println("Index out of Range!!!");
     }
 
-    public Object deleteFirst()
+    public T firstElement()
     {
         if(head==null)
-            return (Object) "List is Empty!!";
-        Object data=head.data;
+            return null;
+        return head.data;
+    }
+
+    public T lastElement()
+    {
+        if(tail==null)
+            return null;
+        return tail.data;
+    }
+
+    public T deleteFirst()
+    {
+        if(head==null)
+            return  (T)"List is Empty!!";
+        T data=head.data;
         head=head.next;
         head.prev=null;
         return data;
     }
 
-    public Object delete(int index)
+    public T deleteAt(int index)
     {
         if(index==0)
         {
@@ -100,19 +114,37 @@ public class DoublyLinkedList<Object>
         }
         else
         {
-            return (Object) "Index out of Range!!";
+            return (T) "Index out of Range!!";
         }
         return temp.data;
     }
 
-    public Object deleteLast()
+    public T deleteLast()
     {
         if(head==null)
-            return (Object) "List is Empty!!";
-        Object data=tail.data;
-        tail.prev.next=null;
-        tail=tail.prev;
+            return (T) "List is Empty!!";
+        T data=tail.data;
+        if(tail.prev!=null)
+        {
+            tail.prev.next = null;
+            tail = tail.prev;
+        }
+        else {
+            head = null;
+        }
         return data;
+    }
+
+    public boolean isEmpty()
+    {
+        if(head==null)
+            return true;
+        return false;
+    }
+
+    public void clear()
+    {
+        head=tail=null;
     }
 
     public int size()
@@ -152,12 +184,12 @@ public class DoublyLinkedList<Object>
         System.out.println(start.data);
     }
 
-    public boolean contains(Object data)
+    public boolean contains(T data)
     {
         return contains(data,head);
     }
 
-    public boolean contains(Object data,Node start)
+    public boolean contains(T data,Node start)
     {
         if(start==null)
             return false;
